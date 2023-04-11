@@ -1,0 +1,47 @@
+@page
+@model IdentityExperimentPart1.Controllers.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Log In</title>
+</head>
+<body>
+    <h3>J.Tucker Designs</h3>
+
+    <form asp-controller="Access" asp-action="Login" method="post">
+        <h1>Welcome to the Demo, Please Log in</h1>
+        <input type="email" placeholder="Email" asp-for="Email" />
+        <input type="password" placeholder="password" asp-for="Password" />
+        <label>
+            <input type="checkbox" asp-for="KeepLoggedIn" />
+            Keep Me Logged In.
+        </label>
+        <button type="submit">Log In</button>
+
+        @if (ViewData["ValidateMessage"] != null)
+        {
+            <br />
+            <br />
+            <label>
+                @ViewData["ValidateMessage"]
+            </label>
+        }
+    </form>
+</body>
+</html>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
